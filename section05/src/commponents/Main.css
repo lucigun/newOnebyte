@@ -1,0 +1,6 @@
+/* css파일로 스타일 적용 시 기존 css 스타일을 사용한다. */
+
+.login{
+    background-color : red;
+    color : white;
+}
