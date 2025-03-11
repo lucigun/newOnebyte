@@ -1,17 +1,32 @@
 import "./App.css";
 import Viewer from "./componetns/Viewer";
 import Controller from "./componetns/Controller";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [count, setCount] = useState(0);
   const onClickButton = (value) => {
     setCount(count + value);
   };
+  //리액트 state는 비동기로 진행
+  const [input, setInput] = useState("");
+
+  useEffect(() => {
+    console.log(`count:${count} / input : ${input}`);
+  }, [count, input]);
+  // 의존성 배열, dependency array, deps
 
   return (
     <div className="App">
       <h1>Simple Counter</h1>
+      <section>
+        <input
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+          }}
+        />
+      </section>
       <section>
         <Viewer count={count} />
       </section>
