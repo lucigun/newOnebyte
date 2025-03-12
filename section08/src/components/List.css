@@ -1,0 +1,23 @@
+.List {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.List > input {
+  width: 100%;
+  border: none;
+  border-bottom: solid 1px rgb(220, 220, 220);
+  padding: 15px 0px;
+}
+
+.List > input:focus {
+  outline: none;
+  border-bottom: solid 3px rgb(110, 160, 200);
+}
+
+.List .todoswrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

@@ -1,0 +1,11 @@
+import "./Editor.css";
+const Editor = () => {
+  return (
+    <div className="Editor">
+      <input placeholder="새로운투두"></input>
+      <button>추가</button>
+    </div>
+  );
+};
+
+export default Editor;
