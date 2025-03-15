@@ -18,6 +18,7 @@ const Editor = ({ onCreate }) => {
       return;
     }
     onCreate(content);
+    console.log(content);
     setContent("");
     {
       /* 입력후 입력창 clear */
