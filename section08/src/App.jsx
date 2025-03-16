@@ -9,24 +9,24 @@ const mockData = [
     id: 0,
     isDone: false,
     content: "react공부하기",
-    date: new Date().getTime,
+    date: new Date().getTime(),
   },
   {
     id: 1,
     isDone: false,
     content: "밥먹기",
-    date: new Date().getTime,
+    date: new Date().getTime(),
   },
   {
     id: 2,
     isDone: false,
     content: "공부하기",
-    date: new Date().getTime,
+    date: new Date().getTime(),
   },
 ];
 
 function App() {
-  const [todos, setTodos] = useState([mockData]);
+  const [todos, setTodos] = useState(mockData); // 수정된 부분
   const idRef = useRef(3);
   const onCreate = (content) => {
     const newTodo = {
@@ -47,7 +47,7 @@ function App() {
         <Editor onCreate={onCreate} /> {/* onCreate prop 추가 */}
       </section>
       <section>
-        <List />
+        <List todos={todos} />
       </section>
     </div>
   );
