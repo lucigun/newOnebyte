@@ -3,6 +3,7 @@ import Editor from "./components/Editor";
 import Header from "./components/Header";
 import List from "./components/List";
 import { useState, useRef } from "react";
+import Exam from "./components/Exam";
 
 const mockData = [
 	{
@@ -54,15 +55,16 @@ function App() {
 
 	return (
 		<div className="App">
-			<section>
+			<Exam />
+			{/* <section>
 				<Header />
 			</section>
 			<section>
-				<Editor onCreate={onCreate} /> {/* onCreate prop 추가 */}
+				<Editor onCreate={onCreate} /> 
 			</section>
 			<section>
 				<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
-			</section>
+			</section> */}
 		</div>
 	);
 }
