@@ -2,8 +2,7 @@ import "./App.css";
 import Editor from "./components/Editor";
 import Header from "./components/Header";
 import List from "./components/List";
-import { useState, useRef } from "react";
-import Exam from "./components/Exam";
+import { useState, useRef, useReducer } from "react";
 
 const mockData = [
 	{
@@ -26,45 +25,62 @@ const mockData = [
 	},
 ];
 
+function reudcer(state, aciton) {
+	switch (aciton.type) {
+		case "CREATE":
+			return [aciton.data, ...state];
+		case "UPDATE":
+			return state.map((item) =>
+				item.id === aciton.targetId ? { ...item, isDone: !item.isDone } : item
+			);
+		case "DELETE":
+			return state.filter((item) => item.id != aciton.targetId);
+		default:
+			return state;
+	}
+}
+
 function App() {
-	const [todos, setTodos] = useState(mockData); // 수정된 부분
+	const [todos, dispatch] = useReducer(reudcer, mockData);
 	const idRef = useRef(3);
+
 	const onCreate = (content) => {
-		const newTodo = {
-			id: idRef.current++,
-			isDone: false,
-			content: content,
-			date: new Date().getTime(),
-		};
-		setTodos([newTodo, ...todos]);
+		dispatch({
+			type: "CREATE",
+			data: {
+				id: idRef.current++,
+				isDone: false,
+				content: content,
+				date: new Date().getTime(),
+			},
+		});
 	};
 
 	const onUpdate = (targetId) => {
-		// todos state의 값에서 targetId를 가진 객체를 찾아서 isDone 값을 반전시킨다.
-		setTodos(
-			todos.map((todo) =>
-				todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo
-			)
-		);
+		dispatch({
+			type: "UPDATE",
+			targetId: targetId,
+		});
 	};
 
 	const onDelete = (targetId) => {
-		// 인수로 todos 배열에서 targetId와 일치하는 id를 요소만 삭제한 새로운 배열
-		setTodos(todos.filter((todo) => todo.id !== targetId));
+		dispatch({
+			type: "DELETE",
+			targetId: targetId,
+		});
 	};
 
 	return (
 		<div className="App">
-			<Exam />
-			{/* <section>
+			<section>
 				<Header />
 			</section>
 			<section>
-				<Editor onCreate={onCreate} /> 
+				<Editor onCreate={onCreate} />
 			</section>
 			<section>
 				<List todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
-			</section> */}
+			</section>
 		</div>
 	);
 }
