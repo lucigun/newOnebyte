@@ -89,7 +89,7 @@ function App() {
 			<Header />
 
 			<TodoStateContext.Provider value={todos}>
-				<TodoDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
+				<TodoDispatchContext.Provider value={memoizedDispatch}>
 					<Editor />
 					<List />
 				</TodoDispatchContext.Provider>
