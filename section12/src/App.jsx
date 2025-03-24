@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Diary from "./pages/Diary";
 import New from "./pages/New";
@@ -13,8 +13,21 @@ import NotFound from "./pages/Notfound";
 // Routes 컴퍼넌트 밖에 추가하는 경우 모든 페이지에 적용됨
 
 function App() {
+	const nav = useNavigate();
+
+	const onClickButton = () => {
+		nav("/new");
+	};
 	return (
 		<>
+			<div>
+				<Link to={"/"}>HOME</Link>
+				<Link to={"/new"}>New</Link>
+				<Link to={"/diary"}>Diary</Link>
+			</div>
+			<button className="BasicButton" onClick={onClickButton}>
+				New 페이지 이동
+			</button>
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/new" element={<New />} />
