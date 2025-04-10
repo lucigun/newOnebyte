@@ -13,29 +13,29 @@ import NotFound from "./pages/Notfound";
 // Routes 컴퍼넌트 밖에 추가하는 경우 모든 페이지에 적용됨
 
 function App() {
-	const nav = useNavigate();
+  const nav = useNavigate();
 
-	const onClickButton = () => {
-		nav("/new");
-	};
-	return (
-		<>
-			<div>
-				<Link to={"/"}>HOME</Link>
-				<Link to={"/new"}>New</Link>
-				<Link to={"/diary"}>Diary</Link>
-			</div>
-			<button className="BasicButton" onClick={onClickButton}>
-				New 페이지 이동
-			</button>
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/new" element={<New />} />
-				<Route path="/diary" element={<Diary />} />
-				<Route path="*" element={<NotFound />} />
-			</Routes>
-		</>
-	);
+  const onClickButton = () => {
+    nav("/new");
+  };
+  return (
+    <>
+      <div>
+        <Link to={"/"}>HOME</Link>
+        <Link to={"/new"}>New</Link>
+        <Link to={"/diary"}>Diary</Link>
+      </div>
+      <button className="BasicButton" onClick={onClickButton}>
+        New 페이지 이동
+      </button>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/new" element={<New />} />
+        <Route path="/diary" element={<Diary />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
