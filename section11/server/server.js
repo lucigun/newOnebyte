@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import todoRoutes from "./routes/todos.js";
+import "./instrumentation.js";
 
 // 환경 변수 설정
 dotenv.config();
